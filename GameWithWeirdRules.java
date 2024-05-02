@@ -5,27 +5,30 @@ public class GameWithWeirdRules {
 
     static int calculate(String[] ops) {
         List<Integer> scores = new ArrayList<>();
-        for (int i = 0; i < ops.length; i++) {
-            if (ops[i].equals("c")) {
-                scores.remove(scores.size() - 1);
-            } else if (ops[i].equals("d")) {
-                int d = scores.size() - 1;
-                d = scores.get(d);
-                d *= 2;
-                scores.add(d);
-            } else if (ops[i].equals("+")) {
-                int plus = scores.size() - 1;
-                int plus1 = scores.get(plus);
-                plus1 += scores.get(plus - 1);
-                scores.add(plus1);
-            } else {
-                int number = Integer.parseInt(ops[i]);
-                scores.add(number);
+        for (String ops1 : ops) {
+            switch (ops1) {
+                case "c" -> scores.remove(scores.size() - 1);
+                case "d" -> {
+                    int d = scores.size() - 1;
+                    d = scores.get(d);
+                    d *= 2;
+                    scores.add(d);
+                }
+                case "+" -> {
+                    int plus = scores.size() - 1;
+                    int plus1 = scores.get(plus);
+                    plus1 += scores.get(plus - 1);
+                    scores.add(plus1);
+                }
+                default -> {
+                    int number = Integer.parseInt(ops1);
+                    scores.add(number);
+                }
             }
         }
         int sum = 0;
-        for (int i = 0; i < scores.size(); i++) {
-            sum += scores.get(i);
+        for (Integer score : scores) {
+            sum += score;
         }
         return sum;
     }
