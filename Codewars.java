@@ -17,4 +17,8 @@ public class Codewars {
     public static String areYouPlayingBanjo(String name) {
         return Character.toString(name.toLowerCase().charAt(0)).equals("r") ? name + " plays banjo" : name + " does not play banjo";
     }
+
+    public static String evenOrOdd(int number) {
+        return number % 2 == 0 ? "Even" : "Odd";
+    }
 }
