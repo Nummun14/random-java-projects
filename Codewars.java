@@ -13,4 +13,8 @@ public class Codewars {
             newNum = numChar + newNum;
         return Integer.parseInt(newNum);
     }
+
+    public static String areYouPlayingBanjo(String name) {
+        return Character.toString(name.toLowerCase().charAt(0)).equals("r") ? name + " plays banjo" : name + " does not play banjo";
+    }
 }
