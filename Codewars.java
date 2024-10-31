@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Codewars {
     private static String yesOrNo(boolean bool) {
@@ -20,5 +22,14 @@ public class Codewars {
 
     public static String evenOrOdd(int number) {
         return number % 2 == 0 ? "Even" : "Odd";
+    }
+
+    public static List<Object> filterList(final List<Object> list) {
+        List<Object> newList = new ArrayList<Object>();
+        for (Object item : list) {
+            if (item instanceof Integer)
+                newList.add(item);
+        }
+        return newList;
     }
 }
