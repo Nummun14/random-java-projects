@@ -32,4 +32,29 @@ public class Codewars {
         }
         return newList;
     }
+
+    public static String convert(boolean b) {
+        return b ? "true" : "false";
+    }
+
+    public int GetSum(int a, int b) {
+        int sum = b;
+        if (a > b) {
+            sum = a;
+            a = b;
+            b = sum;
+        }
+        for (int i = a; i < b; i++)
+            sum += i;
+        return sum;
+    }
+
+    public static int countPassengers(ArrayList<int[]> stops) {
+        int end = 0;
+        for (int[] i : stops) {
+            end += i[0];
+            end -= i[1];
+        }
+        return end;
+    }
 }
