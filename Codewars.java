@@ -57,4 +57,12 @@ public class Codewars {
         }
         return end;
     }
+
+    public static String makeReadable(int seconds) {
+        int hours = seconds / 3600;
+        seconds -= 3600 * hours;
+        int minutes = seconds / 60;
+        seconds -= 60 * minutes;
+        return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds);
+    }
 }
