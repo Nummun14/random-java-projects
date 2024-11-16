@@ -73,4 +73,12 @@ public class Codewars {
             result[i / x - 1] = i;
         return result;
     }
+
+    public static int[] digitize(long n) {
+        char[] nChars = Long.toString(n).toCharArray();
+        int[] result = new int[nChars.length];
+        for (int i = 0; i < nChars.length; i++)
+            result[i] = Integer.parseInt(Character.toString(nChars[nChars.length - i - 1]));
+        return result;
+    }
 }
