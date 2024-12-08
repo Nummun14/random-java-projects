@@ -5,9 +5,6 @@ public class StringUtils {
 
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i].toLowerCase();
-            if (i == 0)
-                camelCase.append(part);
-            else
                 camelCase.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
         }
 
