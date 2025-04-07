@@ -66,4 +66,19 @@ public class Codewars {
         seconds -= 60 * minutes;
         return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds);
     }
+
+    public static int[] countBy(int x, int n){
+        int[] result = new int[n];
+        for (int i = x; i < n * x + 1; i += x)
+            result[i / x - 1] = i;
+        return result;
+    }
+
+    public static int[] digitize(long n) {
+        char[] nChars = Long.toString(n).toCharArray();
+        int[] result = new int[nChars.length];
+        for (int i = 0; i < nChars.length; i++)
+            result[i] = Integer.parseInt(Character.toString(nChars[nChars.length - i - 1]));
+        return result;
+    }
 }
