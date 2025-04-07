@@ -42,24 +42,24 @@ public class MathOlympics {
     }
 
     public static int maxFruitPrice(int[] a) {
-        if (a.length != 12)
+        if (a.length % 3 != 0)
             return -1;
 
         int sum = 0;
         Arrays.sort(a);
-        for (int i = a.length - 2; i > 3; i -= 2)
+        for (int i = a.length - 2; i > (a.length / 3) - 1; i -= 2)
             sum += a[i];
 
         return sum;
     }
 
     public static void main(String[] args) {
-        int[] a = {120, 119, 109, 118, 117, 110, 116, 115, 111, 114, 113, 112};
-        System.out.println(maxFruitPrice(a)); // 464
-        int[] b = {96, 104, 104, 104, 96, 104, 100, 100, 96, 97, 98, 98};
-        System.out.println(maxFruitPrice(b)); // 406
-        int[] c = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        System.out.println(maxFruitPrice(c)); // 4
+        int[] a = {96, 104, 104, 104, 96, 104, 100, 100, 96, 97, 98, 98};
+        System.out.println(maxFruitPrice(a)); // 406
+        int[] b = {1, 2, 3, 4, 5, 6};
+        System.out.println(maxFruitPrice(b)); // 8
+        int[] c = {100, 200, 200};
+        System.out.println(maxFruitPrice(c)); // 200
         int[] d = {6, 11, 9, 12, 12};
         System.out.println(maxFruitPrice(d)); // -1
     }
