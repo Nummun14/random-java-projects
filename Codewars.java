@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Arrays;
 
 public class Codewars {
     private static String yesOrNo(boolean bool) {
@@ -67,7 +66,7 @@ public class Codewars {
         return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds);
     }
 
-    public static int[] countBy(int x, int n){
+    public static int[] countBy(int x, int n) {
         int[] result = new int[n];
         for (int i = x; i < n * x + 1; i += x)
             result[i / x - 1] = i;
