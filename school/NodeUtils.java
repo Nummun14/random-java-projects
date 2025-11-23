@@ -50,4 +50,44 @@ public class NodeUtils {
         }
         return length;
     }
+
+    public static Node<Integer> veryAnnoyingQuestionINeverWantToTouchAgain(Node<Integer> L1, Node<Integer> L2) {
+        Node<Integer> L1Current = L1;
+        Node<Integer> L3 = new Node<>(null);
+        Node<Integer> L3Current = L3;
+        while (L1Current != null) {
+            if (L1Current.getValue() % 2 == 0) {
+                Node<Integer> L2Current = L2;
+                int index = 1;
+                while (L2Current.getNext() != null && index < L1Current.getValue() - 1) {
+                    L2Current = L2Current.getNext();
+                    index++;
+                }
+                if (L2Current.getNext() != null)
+                    L2Current.setNext(L2Current.getNext().getNext());
+            } else {
+                Node<Integer> L2Current = L2;
+                int index = 1;
+                while (L2Current.getNext() != null && index < L1Current.getValue() - 1) {
+                    L2Current = L2Current.getNext();
+                    index++;
+                }
+                if (L2Current.getNext() != null) {
+                    if (L3.getValue() == null) {
+                        L3.setValue(L2Current.getNext().getValue());
+                        L3Current = L3;
+                    } else {
+                        L3Current.setNext(L2Current.getNext());
+                        L3Current = L3Current.getNext();
+                    }
+                }
+            }
+            L1Current = L1Current.getNext();
+        }
+        return L3;
+    }
+
+    public static void removeNextValue(Node<Integer> list) {
+        list.setNext(list.getNext().getNext());
+    }
 }
