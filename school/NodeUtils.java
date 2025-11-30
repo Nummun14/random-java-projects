@@ -51,6 +51,27 @@ public class NodeUtils {
         return length;
     }
 
+    public static Node<Range> toRange(Node<Integer> head) {
+        Node<Range> rangeNode = new Node<>(null);
+        Node<Range> rangeNodeCurrent = rangeNode;
+        int from = head.getValue();
+        Node<Integer> current = head.getNext();
+        while (current.getNext() != null) {
+            if (current.getNext().getValue() - current.getValue() != 1) {
+                if (rangeNodeCurrent.getValue() == null)
+                    rangeNodeCurrent.setValue(new Range(from, current.getValue()));
+                else {
+                    rangeNodeCurrent.setNext(new Node<>(new Range(from, current.getValue())));
+                    rangeNodeCurrent = rangeNodeCurrent.getNext();
+                }
+                from = current.getNext().getValue();
+            }
+            current = current.getNext();
+        }
+        rangeNodeCurrent.setNext(new Node<>(new Range(from, current.getValue())));
+        return rangeNode;
+    }
+
     public static Node<Integer> veryAnnoyingQuestionINeverWantToTouchAgain(Node<Integer> L1, Node<Integer> L2) {
         Node<Integer> L1Current = L1;
         Node<Integer> L3 = new Node<>(null);
