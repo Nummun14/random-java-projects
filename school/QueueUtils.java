@@ -20,9 +20,8 @@ public class QueueUtils {
             tempQueue.insert(currentValue);
         }
 
-        while (!tempQueue.isEmpty()) {
+        while (!tempQueue.isEmpty())
             queue.insert(tempQueue.remove());
-        }
 
         return found;
     }
@@ -38,9 +37,9 @@ public class QueueUtils {
             tempQueue.insert(currentValue);
         }
 
-        while (!tempQueue.isEmpty()) {
+        while (!tempQueue.isEmpty())
             queue.insert(tempQueue.remove());
-        }
+        
         return biggest;
     }
 }
