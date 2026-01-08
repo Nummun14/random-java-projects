@@ -39,7 +39,71 @@ public class QueueUtils {
 
         while (!tempQueue.isEmpty())
             queue.insert(tempQueue.remove());
-        
+
         return biggest;
+    }
+
+    public static boolean areEqual(Queue<Integer> q1, Queue<Integer> q2) {
+        if (q1.isEmpty() && q2.isEmpty())
+            return true;
+        if (q1.isEmpty() || q2.isEmpty())
+            return false;
+
+        Queue<Integer> tempQ1 = new Queue<>();
+        Queue<Integer> tempQ2 = new Queue<>();
+        boolean equal = true;
+
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            Integer val1 = q1.remove();
+            Integer val2 = q2.remove();
+            if (!val1.equals(val2))
+                equal = false;
+            tempQ1.insert(val1);
+            tempQ2.insert(val2);
+        }
+
+        if (!q1.isEmpty() || !q2.isEmpty())
+            equal = false;
+
+        while (!tempQ1.isEmpty())
+            q1.insert(tempQ1.remove());
+        while (!tempQ2.isEmpty())
+            q2.insert(tempQ2.remove());
+
+        return equal;
+    }
+
+    public static void removeSmallest(Queue<Integer> queue) {
+        Queue<Integer> tempQueue = new Queue<Integer>();
+        int smallest = queue.head();
+
+        while (!queue.isEmpty()) {
+            int num = queue.remove();
+            if (num < smallest)
+                smallest = num;
+            tempQueue.insert(num);
+        }
+
+        boolean hasRemoved = false;
+        while (!tempQueue.isEmpty()) {
+            int temp = tempQueue.remove();
+            if (temp != smallest || hasRemoved)
+                queue.insert(temp);
+            else
+                hasRemoved = true;
+        }
+    }
+
+    public static void colorYellow(Queue<Table> tables) {
+        Queue<Table> tempQueue = new Queue<Table>();
+
+        while (!tempQueue.isEmpty()) {
+            Table table = tempQueue.remove();
+            table.setColor("Yellow");
+            tempQueue.insert(table);
+        }
+
+        while (!tempQueue.isEmpty())
+            tables.insert(tempQueue.remove());
     }
 }
