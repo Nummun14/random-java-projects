@@ -1,5 +1,8 @@
 package school;
 
+import school.queue.Queue;
+import school.queue.QueueUtils;
+
 import java.util.Scanner;
 
 public class Test {

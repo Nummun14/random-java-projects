@@ -1,4 +1,6 @@
-package school;
+package school.queue;
+
+import school.Table;
 
 public class QueueUtils {
     public static boolean isInQueue(Queue<Integer> queue, Integer value) {
@@ -42,6 +44,8 @@ public class QueueUtils {
 
         return biggest;
     }
+
+    public static
 
     public static boolean areEqual(Queue<Integer> q1, Queue<Integer> q2) {
         if (q1.isEmpty() && q2.isEmpty())

@@ -1,4 +1,6 @@
-package school;
+package school.nodes;
+
+import school.Range;
 
 public class NodeUtils {
     public static boolean isThird(Node<Integer> node) {

@@ -1,4 +1,6 @@
-package school;
+package school.queue;
+
+import school.nodes.Node;
 
 public class Queue<T> {
     private Node<T> first;

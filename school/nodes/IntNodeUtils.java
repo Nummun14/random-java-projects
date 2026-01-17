@@ -1,4 +1,4 @@
-package school;
+package school.nodes;
 
 public class IntNodeUtils {
     public static boolean isSorted(IntNode node) {

@@ -1,36 +1,37 @@
-package school;
+package school.nodes;
 
-public class IntNode {
-    private int value;
-    private IntNode next;
+public class Node<T> {
+    private T value;
+    private Node<T> next;
 
-    public IntNode(int value, IntNode next) {
+    public Node(T value, Node<T> next) {
         this.value = value;
         this.next = next;
     }
 
-    public IntNode(int value) {
+    public Node(T value) {
         this(value, null);
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
-    public IntNode getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(IntNode next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
-    public void setValue(int value) {
+    public void setValue(T value) {
         this.value = value;
     }
+
     @Override
     public String toString() {
-        return "IntNode{" +
+        return "Node{" +
                 "value=" + value +
                 ", next=" + (next == null ? "null" : next.toString()) +
                 '}';
