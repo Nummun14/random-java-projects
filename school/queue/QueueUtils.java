@@ -44,8 +44,16 @@ public class QueueUtils {
 
         return biggest;
     }
-
-    public static
+//
+//    public static Queue<Integer> getNumbersThatAppearTwice(Queue<Integer> queue) {
+//        Queue<Integer> reversedQueue = new Queue<Integer>();
+//        Queue<Integer> returningQueue = new Queue<Integer>();
+//
+//
+//
+//        while (!reversedQueue.isEmpty())
+//            queue.insert(reversedQueue.remove());
+//    }
 
     public static boolean areEqual(Queue<Integer> q1, Queue<Integer> q2) {
         if (q1.isEmpty() && q2.isEmpty())
