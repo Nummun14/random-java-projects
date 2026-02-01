@@ -12,7 +12,7 @@ public class QueueUtils {
     }
 
     public static boolean isInQueueWithoutModifying(Queue<Integer> queue, Integer value) {
-        Queue<Integer> tempQueue = new Queue<>();
+        Queue<Integer> tempQueue = new Queue<Integer>();
         boolean found = false;
 
         while (!queue.isEmpty()) {

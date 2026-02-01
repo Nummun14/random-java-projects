@@ -23,6 +23,18 @@ public class NodeUtils {
         return true;
     }
 
+    public static int getSum(Node<Integer> node) {
+        Node<Integer> current = node;
+        int sum = 0;
+
+        while (current != null) {
+            sum += current.getValue();
+            current = current.getNext();
+        }
+
+        return sum;
+    }
+
     public static boolean isThirdNoArray(Node<Integer> node) {
         final int length = getLength(node);
         if (length % 3 != 0 || length == 0)
