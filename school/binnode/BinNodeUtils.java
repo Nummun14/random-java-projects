@@ -3,13 +3,102 @@ package school.binnode;
 import school.Table;
 import school.nodes.Node;
 import school.nodes.NodeUtils;
+import school.queue.Queue;
 
 public class BinNodeUtils {
+    public static boolean isMoreRightNodesThanLeft(BinNode<Integer> tree) {
+        return getNumNodes(tree.getRight()) > getNumNodes(tree.getLeft());
+    }
+
+    public static Node<Integer> getSum(BinNode<Node<Integer>> tree) {
+        Node<Integer> node = new Node<>(null);
+        add(tree, node);
+        return node;
+    }
+
+    public static void add(BinNode<Node<Integer>> tree, Node<Integer> node) {
+        if (tree != null) {
+            node.setValue(node.getValue() + tree.getValue().getValue());
+            add(tree.getRight(), node);
+            add(tree.getLeft(), node);
+        }
+    }
+
+    public static Queue<Integer> getEvenQueue(BinNode<Integer> tree) {
+        Queue<Integer> queue = new Queue<>();
+        add(queue, tree);
+        return queue;
+    }
+
+    public static void add(Queue<Integer> queue, BinNode<Integer> tree) {
+        if (tree != null) {
+            if (tree.getValue() % 2 == 0)
+                queue.insert(tree.getValue());
+            add(queue, tree.getRight());
+            add(queue, tree.getLeft());
+        }
+    }
+
+    public static String hasMoreOddEvenOrEqual(BinNode<Integer> tree) {
+        int odd = getAmountOfEvenOrOddNodes(tree, false);
+        int even = getAmountOfEvenOrOddNodes(tree, true);
+        if (even == odd)
+            return "Equal";
+        if (even > odd)
+            return "Even";
+        return "Odd";
+    }
+
+    public static int getAmountOfEvenOrOddNodes(BinNode<Integer> tree, boolean even) {
+        if (tree == null)
+            return 0;
+
+        int mod = even ? 0 : 1;
+        return (tree.getValue() % 2 == mod ? 1 : 0) + getAmountOfEvenOrOddNodes(tree.getLeft(), even) + getAmountOfEvenOrOddNodes(tree.getRight(), even);
+    }
+
+    public static int getBiggest(BinNode<Integer> tree) {
+        if (tree == null)
+            return 0;
+
+        int rightBiggest = getBiggest(tree.getRight());
+        int leftBiggest = getBiggest(tree.getLeft());
+        if (tree.getValue() > rightBiggest && tree.getValue() > leftBiggest)
+            return tree.getValue();
+        if (rightBiggest > leftBiggest)
+            return rightBiggest;
+        return leftBiggest;
+    }
+
+    public static int getNumLeaves(BinNode<Integer> tree) {
+        if (tree == null)
+            return 0;
+        if (!tree.hasLeft() && !tree.hasRight())
+            return 1;
+        return getNumLeaves(tree.getRight()) + getNumLeaves(tree.getLeft());
+    }
+
+    public static int getSumOfNodes(BinNode<Integer> tree) {
+        if (tree == null)
+            return 0;
+        return tree.getValue() + getSumOfNodes(tree.getLeft()) + getSumOfNodes(tree.getRight());
+    }
+
+    public static boolean isAmountOfNodesEven(BinNode<Integer> tree) {
+        return getNumNodes(tree) % 2 == 0;
+    }
+
+    public static int getNumNodes(BinNode<Integer> tree) {
+        if (tree == null)
+            return 0;
+        return 1 + getNumNodes(tree.getLeft()) + getNumNodes(tree.getRight());
+    }
+
     public static void printBlue(BinNode<Table> tables) {
         if (tables != null) {
-        System.out.println(tables.getValue());
-        printBlue(tables.getRight());
-        printBlue(tables.getLeft());
+            System.out.println(tables.getValue());
+            printBlue(tables.getRight());
+            printBlue(tables.getLeft());
         }
     }
 
