@@ -6,12 +6,31 @@ import school.nodes.NodeUtils;
 import school.queue.Queue;
 
 public class BinNodeUtils {
+    public static boolean getBooleanValue(BinNode<String> tree) {
+        if (!tree.hasLeft() && !tree.hasRight())
+            return tree.getValue().equals("T");
+        if (tree.getValue().equals("AND"))
+            return getBooleanValue(tree.getRight()) && getBooleanValue(tree.getLeft());
+        return getBooleanValue(tree.getRight()) || getBooleanValue(tree.getLeft());
+    }
+
+    public static boolean areAllNumbersEven(BinNode<Integer> tree) {
+        if (tree == null)
+            return true;
+        if (tree.getValue() % 2 != 0)
+            return false;
+
+        return areAllNumbersEven(tree.getLeft()) && areAllNumbersEven(tree.getRight());
+    }
+
     public static boolean isMoreRightNodesThanLeft(BinNode<Integer> tree) {
+        if (tree == null)
+            return false;
         return getNumNodes(tree.getRight()) > getNumNodes(tree.getLeft());
     }
 
     public static Node<Integer> getSum(BinNode<Node<Integer>> tree) {
-        Node<Integer> node = new Node<>(null);
+        Node<Integer> node = new Node<>(0);
         add(tree, node);
         return node;
     }
@@ -136,9 +155,8 @@ public class BinNodeUtils {
     }
 
     public static void printLeftChildren(BinNode<Integer> tree) {
-        if (tree != null) {
+        if (tree != null)
             printLeftChildrenHelper(tree.getLeft());
-        }
     }
 
     public static void printSumOfNodesInBinNode(BinNode<Node<Integer>> tree) {
@@ -152,7 +170,7 @@ public class BinNodeUtils {
     private static void printLeftChildrenHelper(BinNode<Integer> tree) {
         if (tree != null) {
             System.out.println(tree.getLeft());
-            printLeftChildrenHelper(tree);
+            printLeftChildrenHelper(tree.getLeft());
         }
     }
 }

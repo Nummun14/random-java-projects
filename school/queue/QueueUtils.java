@@ -1,8 +1,36 @@
 package school.queue;
 
 import school.Table;
+import school.binnode.BinNode;
+import school.binnode.BinNodeUtils;
 
 public class QueueUtils {
+    public static Queue<Integer> getInBoth(Queue<Integer> first, Queue<Integer> second) {
+        Queue<Integer> tempQueue1 = new Queue<Integer>();
+        Queue<Integer> inBothQueue = new Queue<>();
+
+        while (!first.isEmpty()) {
+            int num = first.remove();
+            tempQueue1.insert(num);
+            if (isInQueueWithoutModifying(second, num) && !isInQueueWithoutModifying(inBothQueue, num))
+                inBothQueue.insert(num);
+        }
+
+        while (!tempQueue1.isEmpty())
+            first.insert(tempQueue1.remove());
+
+        return inBothQueue;
+    }
+
+    public static int getHowManyOnlyEven(Queue<BinNode<Integer>> queue) {
+        int num = 0;
+        while (!queue.isEmpty())
+            if (BinNodeUtils.areAllNumbersEven(queue.remove()))
+                num++;
+
+        return num;
+    }
+
     public static boolean isInQueue(Queue<Integer> queue, Integer value) {
         while (!queue.isEmpty()) {
             if (queue.remove().equals(value))
