@@ -5,6 +5,36 @@ import school.binnode.BinNode;
 import school.binnode.BinNodeUtils;
 
 public class QueueUtils {
+    public static boolean isMConnect(Queue<Integer> q1, Queue<Integer> q2, int m) {
+        Queue<Integer> reverseSecondQueue = new Queue<>();
+        Queue<Integer> temp = new Queue<>();
+        Queue<Integer> temp2 = new Queue<>();
+
+        while (!q1.isEmpty()) {
+            int num = q1.remove();
+            reverseSecondQueue.insert(num);
+            temp.insert(num);
+        }
+
+        for (int i = 0; i < m; i++) {
+            Integer x = q2.remove();
+            temp2.insert(x);
+
+            if (!reverseSecondQueue.remove().equals(x))
+                return false;
+        }
+
+        while (!temp.isEmpty()) {
+            q1.insert(temp.remove());
+        }
+
+        while (!temp2.isEmpty()) {
+            q2.insert(temp.remove());
+        }
+
+        return true;
+    }
+
     public static Queue<Integer> getInBoth(Queue<Integer> first, Queue<Integer> second) {
         Queue<Integer> tempQueue1 = new Queue<Integer>();
         Queue<Integer> inBothQueue = new Queue<>();
