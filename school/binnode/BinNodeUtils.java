@@ -6,6 +6,35 @@ import school.nodes.NodeUtils;
 import school.queue.Queue;
 
 public class BinNodeUtils {
+    public static boolean treeEqual(BinNode<Integer> tree) {
+        int amount0 = getAmountOfRemainder(tree, 0);
+        return amount0 == getAmountOfRemainder(tree, 1) && amount0 == getAmountOfRemainder(tree, 2);
+    }
+
+    private static int getAmountOfRemainder(BinNode<Integer> tree, int remainder) {
+        if (tree != null && tree.getValue() % 3 == remainder)
+            return getAmountOfRemainder(tree.getLeft(), remainder) + getAmountOfRemainder(tree.getRight(), remainder) + 1;
+        if (tree != null)
+            return getAmountOfRemainder(tree.getLeft(), remainder) + getAmountOfRemainder(tree.getRight(), remainder);
+        return 0;
+    }
+
+    public static void printAll(BinNode<Integer> tree) {
+        printAllHelper(tree, "");
+    }
+
+    private static void printAllHelper(BinNode<Integer> tree, String current) {
+        if (tree == null)
+            return;
+        current += tree.getValue();
+        if (!tree.hasLeft() && !tree.hasRight())
+            System.out.println(current);
+        if (tree.hasRight())
+            printAllHelper(tree.getRight(), current);
+        if (tree.hasLeft())
+            printAllHelper(tree.getLeft(), current);
+    }
+
     public static boolean isLeftK(BinNode<Integer> tree, int k) {
         return isLeftK(tree.getLeft(), k, 1) && isLeftK(tree.getRight(), k, 0);
     }

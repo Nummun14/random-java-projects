@@ -5,6 +5,34 @@ import school.binnode.BinNode;
 import school.binnode.BinNodeUtils;
 
 public class QueueUtils {
+    public static Queue<Integer> getIntersectionInDifferentAmounts(Queue<Integer> q1, Queue<Integer> q2) {
+        Queue<Integer> ret = new Queue<>();
+        Queue<Integer> clone1 = copyQueue(q1);
+
+        while (!clone1.isEmpty()) {
+            int x = clone1.remove();
+            if (getAmountInQueue(q1, x) != getAmountInQueue(q2, x) && !isInQueueWithoutModifying(ret, x))
+                ret.insert(x);
+        }
+
+        return ret;
+    }
+
+    private static int getAmountInQueue(Queue<Integer> q, int n) {
+        Queue<Integer> temp = new Queue<>();
+        int amount = 0;
+        while (!temp.isEmpty()) {
+            int x = q.remove();
+            temp.insert(x);
+            if (x == n)
+                amount++;
+        }
+        while (!temp.isEmpty())
+            q.insert(temp.remove());
+
+        return amount;
+    }
+
     public static boolean nMagic(Queue<Integer> q, int n) {
         int multiplier = 1;
         int size = getQueueSize(q);

@@ -3,6 +3,26 @@ package school.nodes;
 import school.Range;
 
 public class NodeUtils {
+    public static Node<Integer> buildDigit(Node<Integer> lst) {
+        Node<Integer> ret = new Node<>(0);
+        Node<Integer> retCurrent = ret;
+        Node<Integer> current = lst;
+        while (current != null) {
+            int currentNum = current.getValue();
+            while (currentNum >= 1) {
+                retCurrent.setNext(new Node<>(currentNum % 10));
+                currentNum /= 10;
+                retCurrent = retCurrent.getNext();
+            }
+            retCurrent.setNext(new Node<>(-9));
+            retCurrent = retCurrent.getNext();
+
+            current = current.getNext();
+        }
+
+        return ret.getNext();
+    }
+
     public static Node<Integer> intersection(Node<Integer> lst1, Node<Integer> lst2) {
         Node<Integer> ret = new Node<>(0);
         Node<Integer> firstList1 = createUnion(lst1, lst1);
