@@ -3,6 +3,56 @@ package school.nodes;
 import school.Range;
 
 public class NodeUtils {
+    public static Node<Integer> intersection(Node<Integer> lst1, Node<Integer> lst2) {
+        Node<Integer> ret = new Node<>(0);
+        Node<Integer> firstList1 = createUnion(lst1, lst1);
+        Node<Integer> current = lst2;
+        Node<Integer> retCurrent = ret;
+        while (current != null) {
+            if (isInList(firstList1, current.getValue()) && !isInList(retCurrent, current.getValue())) {
+                retCurrent.setNext(new Node<>(current.getValue()));
+                retCurrent = retCurrent.getNext();
+            }
+            current = current.getNext();
+        }
+
+        return ret.getNext();
+    }
+
+    public static Node<Integer> createUnion(Node<Integer> lst1, Node<Integer> lst2) {
+        Node<Integer> ret = new Node<>(lst1.getValue());
+        Node<Integer> current = lst1.getNext();
+        Node<Integer> retCurrent = ret;
+        while (current != null) {
+            if (!isInList(ret, current.getValue())) {
+                retCurrent.setNext(new Node<>(current.getValue()));
+                retCurrent = retCurrent.getNext();
+            }
+            current = current.getNext();
+        }
+        current = lst2;
+        while (current != null) {
+            if (!isInList(ret, current.getValue())) {
+                retCurrent.setNext(new Node<>(current.getValue()));
+                retCurrent = retCurrent.getNext();
+            }
+            current = current.getNext();
+        }
+
+        return ret;
+    }
+
+    public static boolean isInList(Node<Integer> list, int num) {
+        Node<Integer> current = list;
+        while (current != null) {
+            if (current.getValue() == num)
+                return true;
+            current = current.getNext();
+        }
+
+        return false;
+    }
+
     public static boolean isThird(Node<Integer> node) {
         final int length = getLength(node);
         if (length % 3 != 0)

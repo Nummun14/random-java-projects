@@ -5,6 +5,45 @@ import school.binnode.BinNode;
 import school.binnode.BinNodeUtils;
 
 public class QueueUtils {
+    public static boolean nMagic(Queue<Integer> q, int n) {
+        int multiplier = 1;
+        int size = getQueueSize(q);
+        while (n * multiplier <= size) {
+            if (!isMagic(q, n * multiplier))
+                return false;
+            multiplier++;
+        }
+        return true;
+    }
+
+    public static boolean isMagic(Queue<Integer> q, int m) {
+        if (m == 1)
+            return false;
+        Queue<Integer> temp = new Queue<>();
+        boolean isMagic = false;
+        for (int i = 0; i < m - 2; i++)
+            temp.insert(q.remove());
+
+        int prev = q.remove();
+        temp.insert(prev);
+        int num = q.remove();
+        temp.insert(num);
+        if (!q.isEmpty()) {
+            int after = q.remove();
+            temp.insert(after);
+            if (num == prev + after)
+                isMagic = true;
+        }
+
+        while (!q.isEmpty())
+            temp.insert(q.remove());
+
+        while (!temp.isEmpty())
+            q.insert(temp.remove());
+
+        return isMagic;
+    }
+
     public static boolean isSimilar(Queue<Integer> q1, Queue<Integer> q2) {
         int size1 = getQueueSize(q1);
         if (size1 != getQueueSize(q2))

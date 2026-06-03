@@ -6,6 +6,18 @@ import school.nodes.NodeUtils;
 import school.queue.Queue;
 
 public class BinNodeUtils {
+    public static boolean isLeftK(BinNode<Integer> tree, int k) {
+        return isLeftK(tree.getLeft(), k, 1) && isLeftK(tree.getRight(), k, 0);
+    }
+
+    private static boolean isLeftK(BinNode<Integer> tree, int k, int num) {
+        if (tree == null)
+            return true;
+        if (num > k)
+            return false;
+        return isLeftK(tree.getLeft(), k, num + 1) && isLeftK(tree.getRight(), k, num);
+    }
+
     public static boolean getBooleanValue(BinNode<String> tree) {
         if (!tree.hasLeft() && !tree.hasRight())
             return tree.getValue().equals("T");
