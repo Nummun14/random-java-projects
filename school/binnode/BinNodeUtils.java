@@ -6,6 +6,22 @@ import school.nodes.NodeUtils;
 import school.queue.Queue;
 
 public class BinNodeUtils {
+    public static boolean isDivisor(BinNode<Integer> T1, BinNode<Integer> T2) {
+        if (T1 == null)
+            return true;
+        if (getAmountOfDevisors(T2, T1.getValue()) < 3)
+            return false;
+        return isDivisor(T1.getLeft(), T2) && isDivisor(T1.getRight(), T2);
+    }
+
+    private static int getAmountOfDevisors(BinNode<Integer> tree, int num) {
+        if (tree == null)
+            return 0;
+        if (num % tree.getValue() == 0)
+            return 1 + getAmountOfDevisors(tree.getRight(), num) + getAmountOfDevisors(tree.getLeft(), num);
+        return getAmountOfDevisors(tree.getRight(), num) + getAmountOfDevisors(tree.getLeft(), num);
+    }
+
     public static boolean treeEqual(BinNode<Integer> tree) {
         int amount0 = getAmountOfRemainder(tree, 0);
         return amount0 == getAmountOfRemainder(tree, 1) && amount0 == getAmountOfRemainder(tree, 2);
