@@ -21,7 +21,7 @@ public class QueueUtils {
     private static int getAmountInQueue(Queue<Integer> q, int n) {
         Queue<Integer> temp = new Queue<>();
         int amount = 0;
-        while (!temp.isEmpty()) {
+        while (!q.isEmpty()) {
             int x = q.remove();
             temp.insert(x);
             if (x == n)
