@@ -1,22 +1,4 @@
 public class IntroductionToComputerScienceExamPractice {
-    public static int heaviestPath (int [] arr) {
-        int[] x = new int[0];
-        return heaviestPath(arr, 0, 1, 0, x);
-    }
-
-    private static int heaviestPath (int [] arr, int currentIndex, int currentStep, int currentAmount, int[] currentJourney) {
-        if (currentIndex == arr.length - 1) {
-            System.out.print(currentAmount + ". ");
-            printPath(currentJourney, 0);
-            int sum = getSum(arr, currentJourney, 0);
-            int sigma = sigma(currentJourney.length, 1);
-            System.out.print("\t sum = " + (sigma + sum));
-            System.out.println();
-        }
-
-        
-    }
-
     private static int sigma(int num, int currentNum) {
         if (num == currentNum)
             return num;
