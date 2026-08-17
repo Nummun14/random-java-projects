@@ -1,3 +1,5 @@
+package university;
+
 public class IntroductionToComputerScienceExamPractice {
     private static int sigma(int num, int currentNum) {
         if (num == currentNum)
